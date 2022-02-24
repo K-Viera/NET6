@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Linq;
+using System.Net.Http;
 using System.Reflection;
 
+// System.Data.DataSet ds;
+// HttpClient cliente;
 namespace HelloCs
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Assembly? assembly = Assembly.GetEntryAssembly();
-            if (assembly == null) return;
+            Assembly assembly = Assembly.GetEntryAssembly();
             // loop through the assemblies that this app references
             foreach (AssemblyName name in assembly.GetReferencedAssemblies())
             {
