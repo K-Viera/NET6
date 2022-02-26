@@ -1,0 +1,9 @@
+#!csharp
+
+string word = "LoremIpsum";
+Console.WriteLine(word);
+
+#!csharp
+
+string subWord=word.Substring(4);
+Console.WriteLine(subWord);
