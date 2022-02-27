@@ -1,0 +1,14 @@
+#!csharp
+
+int digitSeparator =1_000_000;
+Console.WriteLine(digitSeparator);
+
+#!csharp
+
+int binaryNumber=0b10010;
+Console.WriteLine(binaryNumber);
+
+#!csharp
+
+int hexadecimalNumber=0xAF2;
+Console.WriteLine(hexadecimalNumber);
