@@ -12,3 +12,9 @@ Console.WriteLine(binaryNumber);
 
 int hexadecimalNumber=0xAF2;
 Console.WriteLine(hexadecimalNumber);
+hexadecimalNumber
+
+#!csharp
+
+display(hexadecimalNumber);
+display(binaryNumber);

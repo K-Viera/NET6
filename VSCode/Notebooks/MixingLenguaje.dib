@@ -1,0 +1,33 @@
+#!markdown
+
+## Mixing Lenguajes
+
+#!fsharp
+
+type person= {Name: string;Age:int}
+
+let people=[
+    {Name="Jhon";Age=30};
+    {Name="Peter";Age=40};
+    {Name="Mary";Age=20};
+    {Name="Jane";Age=30};
+]
+
+people
+
+#!javascript
+
+const people=[
+    {Name:"Jhon",Age:30},
+    {Name:"Peter",Age:40},
+    {Name:"Mary",Age:20},
+    {Name:"Jane",Age:30},
+    {Name:"Larry",Age:50}
+]
+
+const distincBy=people.reduce((acc,p)=>{
+    acc[p["Age"]]=acc[p["Age"]]? acc[p["Age"]]+1:1;
+    return acc;
+},{});
+
+console.log(distincBy);

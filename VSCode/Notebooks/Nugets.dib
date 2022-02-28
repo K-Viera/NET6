@@ -1,0 +1,15 @@
+#!csharp
+
+#!value --from-url https://northwind.vercel.app/api/suppliers --name suppliersJson
+
+#!csharp
+
+#!share --from value suppliersJson
+#r "nuget:Newtonsoft.Json"
+
+using Newtonsoft.Json;
+
+public record Address(string Street, string City, string Region, string PostalCode, string Country, string Phone);
+public record Supplier(string Id, string CompanyName, string ContactName, string ContactTitle, Address Address);
+var suppliers = JsonConvert.DeserializeObject<List<Supplier>>(suppliersJson);
+suppliers
