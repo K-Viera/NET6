@@ -1,0 +1,11 @@
+#!markdown
+
+### Date to string
+https://www.c-sharpcorner.com/blogs/date-and-time-format-in-c-sharp-programming1
+
+#!csharp
+
+var date= DateTime.Now;
+Console.WriteLine(date.ToString());
+Console.WriteLine(date.ToString("MM"));
+Console.WriteLine(date.ToString("MM"));
