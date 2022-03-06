@@ -1,3 +1,7 @@
+#!markdown
+
+### Numbering Systems
+
 #!csharp
 
 int digitSeparator =1_000_000;
@@ -18,3 +22,49 @@ hexadecimalNumber
 
 display(hexadecimalNumber);
 display(binaryNumber);
+
+#!markdown
+
+### Double and decimal
+
+#!markdown
+
+floating-point numbers are numbers that can be represented by binary systems, all naturals numbers can be represented by the binary sistems, but decimals like 0.1 can't.
+
+<sub>https://www.exploringbinary.com/why-0-point-1-does-not-exist-in-floating-point/</sup>
+
+#!csharp
+
+Console.WriteLine("Using doubles:");
+double a=0.1;
+double b=0.2;
+
+if (a + b == 0.3)
+{
+ Console.WriteLine($"{a} + {b} equals {0.3}");
+}
+else
+{
+ Console.WriteLine($"{a} + {b} does NOT equal {0.3}");
+}
+Console.WriteLine($"{a+b}");
+
+#!markdown
+
+The solution of this problem presented by decimals in computers numbers was solved by the decimal dataType, this representacion set a decimal number like 0,1 as a 1 with a mark to shift the decimal point one place to the left
+
+#!csharp
+
+Console.WriteLine("Using doubles:");
+decimal a=0.1M;
+decimal b=0.2M;
+
+if (a + b == 0.3M)
+{
+ Console.WriteLine($"{a} + {b} equals {0.3M}");
+}
+else
+{
+ Console.WriteLine($"{a} + {b} does NOT equal {0.3M}");
+}
+Console.WriteLine($"{a+b}");
