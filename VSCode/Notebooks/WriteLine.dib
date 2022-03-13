@@ -1,3 +1,7 @@
+#!markdown
+
+## Datetime
+
 #!csharp
 
 Console.WriteLine(
@@ -40,6 +44,10 @@ Console.WriteLine(
 
 #!markdown
 
+## Strings
+
+#!markdown
+
 ### Literal String
 
 #!csharp
@@ -67,3 +75,29 @@ kevin");
 string name ="Mark";
 DateTime date= DateTime.Now;
 Console.WriteLine($"Hello,{name}! Today is {date.DayOfWeek}, it's {date:HH:mm} now.");
+
+#!markdown
+
+### Text align
+
+#!csharp
+
+string applesText = "Apples";
+int applesCount = 1234;
+string bananasText = "Bananas";
+int bananasCount = 56789;
+
+#!csharp
+
+Console.WriteLine(
+    format: "{0,-10} {1,6:N0}",
+    arg0: "Name",
+    arg1: "Count");
+Console.WriteLine(
+    format: "{0,10} {1,6:N0}",
+    arg0: applesText,
+    arg1: applesCount);
+    Console.WriteLine(
+        format: "{0,-10} {1,6:N0}",
+        arg0: bananasText,
+        arg1: bananasCount);
