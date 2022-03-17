@@ -1,0 +1,35 @@
+#!csharp
+
+long e = 10; 
+int f = (int)e;
+Console.WriteLine($"e is {e:N0} and f is {f:N0}"); 
+e = 5_000_000_000;;
+f = (int)e;
+Console.WriteLine($"e is {e:N0} and f is {f:N0}");
+Console.WriteLine($"{int.MaxValue:N0}");
+
+#!csharp
+
+using static System.Convert;
+
+#!csharp
+
+double g = 9.8;
+int h = ToInt32(g); // a method of System.Convert
+Console.WriteLine($"g is {g} and h is {h}");
+
+#!csharp
+
+// allocate array of 128 bytes
+byte[] binaryObject = new byte[128];
+// populate array with random bytes
+(new Random()).NextBytes(binaryObject); 
+Console.WriteLine("Binary Object as bytes:");
+for(int index = 0; index < binaryObject.Length; index++)
+{
+  Console.Write($"{binaryObject[index]:X} ");
+}
+Console.WriteLine();
+// convert to Base64 string and output as text
+string encoded = ToBase64String(binaryObject);
+Console.WriteLine($"Binary Object as Base64: {encoded}");
