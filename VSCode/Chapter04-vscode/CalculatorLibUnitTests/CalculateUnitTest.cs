@@ -31,4 +31,17 @@ public class CalculteUnitTest
       // assert
       Assert.Equal(expected, actual);
     }
+    [Fact]
+    public void TestAdding4()
+    {
+      // arrange 
+      double a = 2; 
+      double b = 3;
+      double expected = 6;
+      Calculator calc = new();
+        // act
+        double actual = calc.Add(a, b);
+      // assert
+      Assert.Equal(expected, actual);
+    }
 }

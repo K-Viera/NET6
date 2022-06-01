@@ -16,8 +16,6 @@ Console.WriteLine($"b >> 1 = {b >> 1}");
 
 #!csharp
 
-int max = 500;
-for (byte i = 0; i < max; i++)
-{
-  Console.WriteLine(i);
-}
+int c=14; // 00001110
+Console.WriteLine($"c = {Convert.ToString(c*2, 2)}");
+Console.WriteLine($"c = {Convert.ToString(c<<1, 2)}");
