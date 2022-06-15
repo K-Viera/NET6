@@ -6,8 +6,5 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-  <ItemGroup>
-    <ProjectReference Include="../LoginComponent/LoginComponent.csproj" />
-    <ProjectReference Include="../ValidationsComponent/ValidationsComponent.csproj" />
-  </ItemGroup>
+
 </Project>

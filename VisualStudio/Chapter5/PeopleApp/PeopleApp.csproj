@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -6,8 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+
   <ItemGroup>
-    <ProjectReference Include="../LoginComponent/LoginComponent.csproj" />
-    <ProjectReference Include="../ValidationsComponent/ValidationsComponent.csproj" />
+    <ProjectReference Include="..\Chapter5\PackLibrary.csproj" />
   </ItemGroup>
+
 </Project>
