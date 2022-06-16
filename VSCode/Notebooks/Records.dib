@@ -1,0 +1,21 @@
+#!csharp
+
+using static System.Console;
+public record ImmutableVehicle
+{
+  public int Wheels { get; init; }
+  public string Color { get; init; }
+  public string Brand { get; init; }
+}
+
+#!csharp
+
+ImmutableVehicle car = new() 
+{
+  Color = "Soul Red Crystal Metallic",
+  Wheels = 4
+};
+ImmutableVehicle repaintedCar = car 
+  with { Color = "Polymetal Grey Metallic" }; 
+WriteLine($"Original car color was {car.Color}.");
+WriteLine($"New car color is {repaintedCar.Color}.");

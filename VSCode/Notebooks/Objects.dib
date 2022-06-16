@@ -1,0 +1,77 @@
+#!markdown
+
+### Pattern matching with objects
+
+#!csharp
+
+public class BusinessClassPassenger
+{
+  public override string ToString()
+  {
+    return $"Business Class";
+  }
+}
+public class FirstClassPassenger
+{
+  public int AirMiles { get; set; }
+  public override string ToString()
+  {
+    return $"First Class with {AirMiles:N0} air miles";
+  }
+}
+public class CoachClassPassenger
+{
+  public double CarryOnKG { get; set; }
+  public override string ToString()
+  {
+    return $"Coach Class with {CarryOnKG:N2} KG carry on";
+  }
+}
+
+#!csharp
+
+object[] passengers = {
+    new FirstClassPassenger { AirMiles = 1_419 },
+    new FirstClassPassenger { AirMiles = 16_562 },
+    new BusinessClassPassenger(),
+    new CoachClassPassenger { CarryOnKG = 25.7 },
+    new CoachClassPassenger { CarryOnKG = 0 },
+  };
+  foreach (object passenger in passengers)
+  {
+    //C# 8.0
+    decimal flightCost = passenger switch
+    {
+      FirstClassPassenger p when p.AirMiles > 35000 => 1500M, 
+      FirstClassPassenger p when p.AirMiles > 15000 => 1750M, 
+      FirstClassPassenger _                         => 2000M,
+      BusinessClassPassenger _                      => 1000M,
+      CoachClassPassenger p when p.CarryOnKG < 10.0 => 500M, 
+      CoachClassPassenger _                         => 650M,
+      _                                             => 800M
+    };
+    decimal flightCost2= passenger switch
+    {
+      FirstClassPassenger p => p.AirMiles switch
+      {
+        > 35000 => 1500M,
+        > 15000 => 1750M,
+        _       => 2000M
+      },
+      BusinessClassPassenger                        => 1000M,
+      CoachClassPassenger p when p.CarryOnKG < 10.0 => 500M,
+      CoachClassPassenger                           => 650M,
+      _                                             => 800M
+    };
+    decimal flightCost3= passenger switch
+    {
+      FirstClassPassenger { AirMiles: > 35000 } => 1500,
+      FirstClassPassenger { AirMiles: > 15000 } => 1750M,
+      FirstClassPassenger => 2000M,
+      BusinessClassPassenger                        => 1000M,
+      CoachClassPassenger p when p.CarryOnKG < 10.0 => 500M,
+      CoachClassPassenger                           => 650M,
+      _                                             => 800M
+    };
+    Console.WriteLine($"Flight costs {flightCost3:C} for {passenger}");
+  } 
