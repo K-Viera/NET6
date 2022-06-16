@@ -24,18 +24,27 @@ using static System.Console;
 //  arg1: blankPerson.HomePlanet,
 //  arg2: blankPerson.Instantiated);
 
-//Tuples
-Person bob = new();
-(string, int) fruit = bob.GetFruit();
-WriteLine($"{fruit.Item1}, {fruit.Item2} there are.");
+////Tuples
+//Person bob = new();
+//(string, int) fruit = bob.GetFruit();
+//WriteLine($"{fruit.Item1}, {fruit.Item2} there are.");
 
-var fruitNamed = bob.GetNamedFruit();
-WriteLine($"There are {fruitNamed.Number} {fruitNamed.Name}.");
-//inferring tuple names
-var thing1 = ("Neville", 4);
-WriteLine($"{thing1.Item1} has {thing1.Item2} children.");
-var thing2 = (bob.Name, bob.Children.Count);
-WriteLine($"{thing2.Name} has {thing2.Count} children.");
-//Deconstructing tuples
-(string fruitName, int fruitNumber) = bob.GetFruit();
-WriteLine($"Deconstructed: {fruitName}, {fruitNumber}");
+//var fruitNamed = bob.GetNamedFruit();
+//WriteLine($"There are {fruitNamed.Number} {fruitNamed.Name}.");
+////inferring tuple names
+//var thing1 = ("Neville", 4);
+//WriteLine($"{thing1.Item1} has {thing1.Item2} children.");
+//var thing2 = (bob.Name, bob.Children.Count);
+//WriteLine($"{thing2.Name} has {thing2.Count} children.");
+////Deconstructing tuples
+//(string fruitName, int fruitNumber) = bob.GetFruit();
+//WriteLine($"Deconstructed: {fruitName}, {fruitNumber}");
+
+//Controlling how parameters are passed
+Person bob = new();
+int a = 10;
+int b = 20;
+int c = 30;
+WriteLine($"Before: a = {a}, b = {b}, c = {c}");
+bob.PassingParameters(a, ref b, out c);
+WriteLine($"After: a = {a}, b = {b}, c = {c}");

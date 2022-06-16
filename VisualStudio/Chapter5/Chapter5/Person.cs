@@ -15,7 +15,7 @@ namespace Packt.Shared
         public readonly DateTime Instantiated;
 
         // constructors
-        public Person()
+        public  Person()
         {
             // set default values for fields
             // including read-only fields
@@ -37,6 +37,23 @@ namespace Packt.Shared
         public (string Name, int Number) GetNamedFruit()
         {
             return (Name: "Apples", Number: 5);
+        }
+
+        // deconstructors
+        public void Deconstruct(out string name, out DateTime dob)
+        {
+            name = Name;
+            dob = DateOfBirth;
+        }
+        public void PassingParameters(int x, ref int y, out int z)
+        {
+            // out parameters cannot have a default
+            // AND must be initialized inside the method
+            z = 99;
+            // increment each parameter
+            x++;
+            y++;
+            z++;
         }
     }
 }
