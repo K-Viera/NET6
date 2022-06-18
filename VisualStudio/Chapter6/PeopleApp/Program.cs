@@ -1,7 +1,7 @@
 ﻿using Packt.Shared;
 using static System.Console;
 
-Person harry = new() { Name = "Harry" };
+//Person harry = new() { Name = "Harry" };
 //Person mary = new() { Name = "Mary" };
 //Person jill = new() { Name = "Jill" };
 
@@ -53,15 +53,18 @@ Person[] people =
   new() { Name = "Simon" },
   new() { Name = "Jenny" },
   new() { Name = "Adam" },
-  new() { Name = "Richard" }
+  new() { Name = "Richard" },
 };
 WriteLine("Initial list of people:");
 foreach (Person p in people)
 {
     WriteLine($"  {p.Name}");
 }
-WriteLine("Use Person's IComparable implementation to sort:");
-Array.Sort(people);
+//WriteLine("Use Person's IComparable implementation to sort:");
+//Array.Sort(people);
+
+WriteLine("Use PersonComparer's IComparer implementation to sort:");
+Array.Sort(people, new PersonComparer());
 foreach (Person p in people)
 {
     WriteLine($"  {p.Name}");
