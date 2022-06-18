@@ -19,3 +19,17 @@ ImmutableVehicle repaintedCar = car
   with { Color = "Polymetal Grey Metallic" }; 
 WriteLine($"Original car color was {car.Color}.");
 WriteLine($"New car color is {repaintedCar.Color}.");
+
+#!markdown
+
+### Simplifying data members in records
+
+#!csharp
+
+public record ImmutableAnimal(string Name, string Species);
+
+#!csharp
+
+ImmutableAnimal oscar = new("Oscar", "Labrador");
+var (who, what) = oscar; // calls Deconstruct method 
+WriteLine($"{who} is a {what}.");
