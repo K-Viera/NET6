@@ -1,6 +1,9 @@
 #!csharp
 
 using static System.Console;
+
+#!csharp
+
 public record ImmutableVehicle
 {
   public int Wheels { get; init; }
@@ -33,3 +36,13 @@ public record ImmutableAnimal(string Name, string Species);
 ImmutableAnimal oscar = new("Oscar", "Labrador");
 var (who, what) = oscar; // calls Deconstruct method 
 WriteLine($"{who} is a {what}.");
+
+#!markdown
+
+### Comparation
+
+#!csharp
+
+ImmutableAnimal oscar = new("Oscar", "Labrador");
+ImmutableAnimal oscar2 = new("Oscar", "Labrador");
+WriteLine(oscar == oscar2); // calls Equals method
