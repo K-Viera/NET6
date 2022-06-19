@@ -70,8 +70,54 @@ using static System.Console;
 //    WriteLine($"  {p.Name}");
 //}
 
-////Struc Types
-DisplacementVector dv1 = new(3, 5);
-DisplacementVector dv2 = new(-2, 7);
-DisplacementVector dv3 = dv1 + dv2;
-WriteLine($"({dv1.X}, {dv1.Y}) + ({dv2.X}, {dv2.Y}) = ({dv3.X}, {dv3.Y})");
+//////Struc Types
+//DisplacementVector dv1 = new(3, 5);
+//DisplacementVector dv2 = new(-2, 7);
+//DisplacementVector dv3 = dv1 + dv2;
+//WriteLine($"({dv1.X}, {dv1.Y}) + ({dv2.X}, {dv2.Y}) = ({dv3.X}, {dv3.Y})");
+
+//// Inherence
+Employee john = new()
+{
+    Name = "John Jones",
+    DateOfBirth = new(year: 1990, month: 7, day: 28)
+};
+john.EmployeeCode = "JJ001";
+john.HireDate = new(year: 2014, month: 11, day: 23);
+WriteLine($"{john.Name} was hired on {john.HireDate:dd/MM/yy}");
+WriteLine(john.ToString());
+
+////polymorphism
+Employee aliceInEmployee = new()
+{ Name = "Alice", EmployeeCode = "AA123" };
+Person aliceInPerson = aliceInEmployee;
+aliceInEmployee.WriteToConsole();
+aliceInPerson.WriteToConsole();
+WriteLine(aliceInEmployee.ToString());
+WriteLine(aliceInPerson.ToString());
+
+try
+{
+    john.TimeTravel(when: new(1999, 12, 31));
+    john.TimeTravel(when: new(1950, 12, 25));
+}
+catch (PersonException ex)
+{
+    WriteLine(ex.Message);
+}
+
+string email1 = "pamela@test.com";
+string email2 = "ian&test.com";
+WriteLine("{0} is a valid e-mail address: {1}",
+  arg0: email1,
+  arg1: StringExtensions.IsValidEmail(email1));
+WriteLine("{0} is a valid e-mail address: {1}",
+  arg0: email2,
+  arg1: StringExtensions.IsValidEmail(email2));
+
+WriteLine("{0} is a valid e-mail address: {1}",
+  arg0: email1,
+  arg1: email1.IsValidEmail());
+WriteLine("{0} is a valid e-mail address: {1}",
+  arg0: email2,
+  arg1: email2.IsValidEmail());
