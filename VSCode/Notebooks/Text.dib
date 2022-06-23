@@ -1,0 +1,43 @@
+#!markdown
+
+### usefull Methods
+
+#!markdown
+
+#### split
+
+#!csharp
+
+string cities="Medellin,Bogota,Cali";
+string[] citiesArray=cities.Split(',');
+foreach(string city in citiesArray)
+{
+    Console.WriteLine(city);
+}
+
+#!markdown
+
+#### substring
+
+#!csharp
+
+string fullName="Kevin Viera";
+int indexOfTheSpace=fullName.IndexOf(' ');
+string firstName=fullName.Substring(0,indexOfTheSpace);
+string lastName=fullName.Substring(indexOfTheSpace+1);
+Console.WriteLine($"Original: {fullName}");
+Console.WriteLine($"Swapped: {lastName}, {firstName}"); 
+
+#!markdown
+
+### Sub string
+
+#!csharp
+
+string word = "LoremIpsum";
+Console.WriteLine(word);
+
+#!csharp
+
+string subWord=word.Substring(4);
+Console.WriteLine(subWord);
