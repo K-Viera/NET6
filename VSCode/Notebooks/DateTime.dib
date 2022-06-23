@@ -1,5 +1,90 @@
 #!markdown
 
+### Generals
+
+#!csharp
+
+Console.WriteLine("Earliest date/time value is: {0}",
+  arg0: DateTime.MinValue);
+Console.WriteLine("UNIX epoch date/time value is: {0}",
+  arg0: DateTime.UnixEpoch);
+Console.WriteLine("Date/time value Now is: {0}",
+  arg0: DateTime.Now);
+Console.WriteLine("Date/time value Today is: {0}",
+  arg0: DateTime.Today);
+
+#!csharp
+
+DateTime christmas = new(year: 2022, month: 12, day: 25);
+Console.WriteLine("Christmas: {0}",
+  arg0: christmas); // default format
+Console.WriteLine("Christmas: {0:dddd, dd MMMM yyyy}",
+  arg0: christmas); // custom format
+Console.WriteLine("Christmas is in month {0} of the year.",
+  arg0: christmas.Month);
+Console.WriteLine("Christmas is day {0} of the year.",
+  arg0: christmas.DayOfYear);
+  Console.WriteLine("Christmas {0} is on a {1}.",
+  arg0: christmas.Year,
+  arg1: christmas.DayOfWeek);
+
+DateTime beforeXmas = christmas.Subtract(TimeSpan.FromDays(12));
+DateTime afterXmas = christmas.AddDays(12);
+Console.WriteLine("12 days before Christmas is: {0}",
+  arg0: beforeXmas);
+Console.WriteLine("12 days after Christmas is: {0}",
+  arg0: afterXmas);
+TimeSpan untilChristmas = christmas - DateTime.Now;
+Console.WriteLine("There are {0} days and {1} hours until Christmas.",
+  arg0: untilChristmas.Days,
+  arg1: untilChristmas.Hours);
+Console.WriteLine("There are {0:N0} hours until Christmas.",
+  arg0: untilChristmas.TotalHours);
+
+#!markdown
+
+### Globalization
+
+#!csharp
+
+using System.Globalization;
+using static System.Console;
+
+#!csharp
+
+WriteLine("Current culture is: {0}",
+  arg0: CultureInfo.CurrentCulture.Name);
+string textDate = "4 July 2021";
+DateTime independenceDay = DateTime.Parse(textDate);
+WriteLine("Text: {0}, DateTime: {1:d MMMM}",
+  arg0: textDate,
+  arg1: independenceDay);
+textDate = "7/4/2021";
+independenceDay = DateTime.Parse(textDate);
+WriteLine("Text: {0}, DateTime: {1:d MMMM}",
+  arg0: textDate,
+  arg1: independenceDay);
+independenceDay = DateTime.Parse(textDate,
+  provider: CultureInfo.GetCultureInfo("en-US"));
+WriteLine("Text: {0}, DateTime: {1:d MMMM}",
+  arg0: textDate,
+  arg1: independenceDay);
+
+#!markdown
+
+### Date and Time only in .NET 6
+
+#!csharp
+
+DateOnly queensBirthday = new(year: 2022, month: 4, day: 21);
+Console.WriteLine($"The Queen's next birthday is on {queensBirthday}.");
+TimeOnly partyStarts = new(hour: 20, minute: 30);
+Console.WriteLine($"The Queen's party starts at {partyStarts}.");
+DateTime calendarEntry = queensBirthday.ToDateTime(partyStarts);
+Console.WriteLine($"Add to your calendar: {calendarEntry}.");
+
+#!markdown
+
 ### Date to string
 https://www.c-sharpcorner.com/blogs/date-and-time-format-in-c-sharp-programming1
 
