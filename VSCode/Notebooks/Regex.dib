@@ -1,0 +1,27 @@
+#!markdown
+
+### Regular expressions
+
+#!markdown
+
+- "@" switchess off the ability yo use escape characters in the string (escape charactes are for example \t meaning a tab and \n meaning a new line)
+- "\d" is a regular expression that means digit
+- "^" to indicate the start of some input
+- "$" to indicate the end of some input
+- "+" allows one or more digits
+
+#!csharp
+
+using System.Text.RegularExpressions;
+string? input = "30";
+// Regex ageChecker = new(@"\d"); 
+// Regex ageChecker = new(@"^\d$");
+Regex ageChecker = new(@"^\d+$");
+if (ageChecker.IsMatch(input))
+{
+  Console.WriteLine("Thank you!");
+}
+else
+{
+  Console.WriteLine($"This is not a valid age: {input}");
+}
