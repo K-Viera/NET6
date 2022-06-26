@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32602.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkingWithFileSystems", "WorkingWithFileSystems\WorkingWithFileSystems.csproj", "{017BB175-3C0C-418F-9179-5F37F9A3314D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkingWithFileSystems", "WorkingWithFileSystems\WorkingWithFileSystems.csproj", "{017BB175-3C0C-418F-9179-5F37F9A3314D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkingWithRanges", "WorkingWithRanges\WorkingWithRanges.csproj", "{3F5278E8-DDE3-4070-A106-DF00514F398F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkingWithNetworkResources", "WorkingWithNetworkResources\WorkingWithNetworkResources.csproj", "{3CEAB1BF-FD90-44B7-AB00-7ED025842593}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{017BB175-3C0C-418F-9179-5F37F9A3314D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{017BB175-3C0C-418F-9179-5F37F9A3314D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{017BB175-3C0C-418F-9179-5F37F9A3314D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F5278E8-DDE3-4070-A106-DF00514F398F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F5278E8-DDE3-4070-A106-DF00514F398F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F5278E8-DDE3-4070-A106-DF00514F398F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F5278E8-DDE3-4070-A106-DF00514F398F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CEAB1BF-FD90-44B7-AB00-7ED025842593}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CEAB1BF-FD90-44B7-AB00-7ED025842593}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CEAB1BF-FD90-44B7-AB00-7ED025842593}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CEAB1BF-FD90-44B7-AB00-7ED025842593}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
