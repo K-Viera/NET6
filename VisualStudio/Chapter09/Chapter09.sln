@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkingWithRanges", "Workin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkingWithNetworkResources", "WorkingWithNetworkResources\WorkingWithNetworkResources.csproj", "{3CEAB1BF-FD90-44B7-AB00-7ED025842593}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkingWithReflection", "WorkingWithReflection\WorkingWithReflection.csproj", "{21A82CE2-F23D-42F2-9AC3-774A139E11AF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{3CEAB1BF-FD90-44B7-AB00-7ED025842593}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CEAB1BF-FD90-44B7-AB00-7ED025842593}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CEAB1BF-FD90-44B7-AB00-7ED025842593}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21A82CE2-F23D-42F2-9AC3-774A139E11AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21A82CE2-F23D-42F2-9AC3-774A139E11AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21A82CE2-F23D-42F2-9AC3-774A139E11AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21A82CE2-F23D-42F2-9AC3-774A139E11AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
