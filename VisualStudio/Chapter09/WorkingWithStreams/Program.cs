@@ -1,9 +1,61 @@
 ﻿using System.Xml;
 using System;
 using System.IO;
+using System.IO.Compression; // BrotliStream, GZipStream, CompressionMode
 
 //WorkWithText();
-WorkWithXml();
+//WorkWithXml();
+WorkWithCompression();
+
+static void WorkWithCompression() 
+{
+    string fileExt = "gzip";
+    // compress the XML output
+    string filePath = Path.Combine(
+    Environment.CurrentDirectory, $"streams.{fileExt}");
+    FileStream file = File.Create(filePath);
+
+    using (Stream compressor = new GZipStream(file, CompressionMode.Compress)) 
+    {
+        using (XmlWriter xmlWriter = XmlWriter.Create(compressor))
+        {
+            xmlWriter.WriteStartDocument();
+            xmlWriter.WriteStartElement("callsigns");
+            foreach (string item in Viper.Callsigns)
+            {
+                xmlWriter.WriteElementString("callsign", item);
+            }
+            // the normal call to WriteEndElement is not necessary
+            // because when the XmlWriter disposes, it will
+            // automatically end any elements of any depth
+        }
+    }
+    // output all the contents of the compressed file
+    Console.WriteLine("{0} contains {1:N0} bytes.",
+      filePath, new FileInfo(filePath).Length);
+    Console.WriteLine($"The compressed contents:");
+    Console.WriteLine(File.ReadAllText(filePath));
+    // read a compressed file
+    Console.WriteLine("Reading the compressed XML file:");
+    file = File.Open(filePath, FileMode.Open);
+    Stream decompressor = new GZipStream(file, CompressionMode.Decompress);
+    using (decompressor)
+    {
+        using (XmlReader reader = XmlReader.Create(decompressor))
+        {
+            while (reader.Read()) // read the next XML node
+            {
+                // check if we are on an element node named callsign
+                if ((reader.NodeType == XmlNodeType.Element)
+                  && (reader.Name == "callsign"))
+                {
+                    reader.Read(); // move to the text inside element
+                    Console.WriteLine($"{reader.Value}"); // read its value
+                }
+            }
+        }
+    }
+}
 
 static void WorkWithXml()
 {
