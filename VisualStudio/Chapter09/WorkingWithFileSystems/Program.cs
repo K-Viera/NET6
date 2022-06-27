@@ -52,6 +52,7 @@ static void WorkWithFiles()
     WriteLine($"Random File Name: {GetRandomFileName()}");
     WriteLine($"Temporary File Name: {GetTempFileName()}");
 }
+
 static void OutputFileSystemInfo()
 {
     WriteLine("{0,-33} {1}", arg0: "Path.PathSeparator",
