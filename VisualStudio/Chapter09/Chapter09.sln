@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkingWithReflection", "Wo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkingWithStreams", "WorkingWithStreams\WorkingWithStreams.csproj", "{BFD56221-41FF-415B-8B32-29AAB782A315}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkingWithEncodings", "WorkingWithEncodings\WorkingWithEncodings.csproj", "{2C8B5301-01A3-4CE8-ACAC-CC04B38B7FFC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{BFD56221-41FF-415B-8B32-29AAB782A315}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFD56221-41FF-415B-8B32-29AAB782A315}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BFD56221-41FF-415B-8B32-29AAB782A315}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C8B5301-01A3-4CE8-ACAC-CC04B38B7FFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C8B5301-01A3-4CE8-ACAC-CC04B38B7FFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C8B5301-01A3-4CE8-ACAC-CC04B38B7FFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C8B5301-01A3-4CE8-ACAC-CC04B38B7FFC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
