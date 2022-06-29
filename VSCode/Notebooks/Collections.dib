@@ -2,6 +2,8 @@
 
 ### Using indexes, ranges, and spans
 
+Only work with arrays because the memory must be contiguos
+
 #!csharp
 
 string name = "Samantha Jones";
