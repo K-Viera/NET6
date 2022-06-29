@@ -3,6 +3,7 @@ using static System.Console;
 using System;
 using System.IO;
 using WorkingWithSerialization;
+using System.Text.Json;
 
 List<Person> people = new()
 {
@@ -60,12 +61,50 @@ using (FileStream xmlLoad = File.Open(path, FileMode.Open))
 {
     // deserealize and cast the object graph into a List of Person
     List<Person>? loadedPeople = serializer.Deserialize(xmlLoad) as List<Person>;
-    if (loadedPeople is not null) 
+    if (loadedPeople is not null)
     {
         foreach (Person p in loadedPeople)
         {
             WriteLine("{0} has {1} children.",
-                p.LastName, p.Children?.Count()??0);
+                p.LastName, p.Children?.Count() ?? 0);
+        }
+    }
+}
+
+string jsonPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "people.json");
+using (StreamWriter jsonStream = File.CreateText(jsonPath))
+{
+    // create an object that will format as JSON
+    Newtonsoft.Json.JsonSerializer jsonSerializer = new();
+    // Serialize the object graph into a string
+    jsonSerializer.Serialize(jsonStream, people);
+}
+WriteLine();
+WriteLine("Written {0:N0} bytes of JSON to: {1}",
+  arg0: new FileInfo(jsonPath).Length,
+  arg1: jsonPath);
+// Display the serialized object graph
+WriteLine(File.ReadAllText(jsonPath));
+
+using (FileStream jsonLoad = File.Open(jsonPath, FileMode.Open))
+{
+    using (StreamReader streamReader = new(jsonLoad))
+    {
+        string jsonLoadString = streamReader.ReadToEnd() ?? "";
+        var loadedPeopleByString = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Person>?>(jsonLoadString ?? "");
+    }
+}
+using (FileStream jsonLoad = File.Open(jsonPath, FileMode.Open))
+{
+
+    //Deserialize object graph into a list of Person
+    List<Person>? loadedPeople = await JsonSerializer.DeserializeAsync(utf8Json: jsonLoad, returnType: typeof(List<Person>)) as List<Person>;
+    if (loadedPeople is not null)
+    {
+        foreach (Person p in loadedPeople)
+        {
+            WriteLine("{0} has {1} children.",
+              p.LastName, p.Children?.Count ?? 0);
         }
     }
 }
