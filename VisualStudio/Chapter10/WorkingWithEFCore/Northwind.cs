@@ -17,6 +17,7 @@ namespace Packt.Shared
         "Initial Catalog=Northwind;" +
         "Integrated Security=true;" +
         "MultipleActiveResultSets=true;";
+            optionsBuilder.UseLazyLoadingProxies();
             optionsBuilder.UseSqlServer(connection);
         }
         //these properties map to tables in the database

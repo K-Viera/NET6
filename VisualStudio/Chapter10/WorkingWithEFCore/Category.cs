@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Packt.Shared
 {
-    internal class Category
+    public class Category
     {
         // these properties map to columns in the database
         public int CategoryId { get; set; }

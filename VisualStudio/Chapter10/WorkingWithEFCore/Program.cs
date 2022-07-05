@@ -72,12 +72,12 @@ static void QueryingCategories()
     {
         using (Northwind db = new())
         {
-            ILoggerFactory loggerFactory = db.GetService<ILoggerFactory>();
-            loggerFactory.AddProvider(new ConsoleLoggerProvider());
+            //ILoggerFactory loggerFactory = db.GetService<ILoggerFactory>();
+            //loggerFactory.AddProvider(new ConsoleLoggerProvider());
             Console.WriteLine("Categories and how many products they have:");
             // a query to get all categories and their related products
-            IQueryable<Category>? categories = db.Categories?
-              .Include(c => c.Products);
+            IQueryable<Category>? categories = db.Categories;
+              //.Include(c => c.Products);
             if (categories is null)
             {
                 Console.WriteLine("No categories found.");
