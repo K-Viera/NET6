@@ -10,7 +10,67 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 //QueryingCategories();
 //FilteredIncludes();
 //QueryingProducts();
-QueryingCategoriesWithExplicitLoad();
+//QueryingCategoriesWithExplicitLoad();
+
+//if (AddProduct(categoryId: 6,
+//  productName: "Bob's Burgers", price: 500M))
+//{
+//    WriteLine("Add product successful.");
+//}
+if (IncreaseProductPrice(
+  productNameStartsWith: "Bob", amount: 20M))
+{
+    WriteLine("Update product price successful.");
+}
+ListProducts();
+
+static bool IncreaseProductPrice(
+  string productNameStartsWith, decimal amount)
+{
+    using (Northwind db = new())
+    {
+        // get first product whose name starts with name
+        Product updateProduct = db.Products.First(
+          p => p.ProductName.StartsWith(productNameStartsWith));
+        updateProduct.Cost += amount;
+        int affected = db.SaveChanges();
+        return (affected == 1);
+    }
+}
+
+static bool AddProduct(
+  int categoryId, string productName, decimal? price)
+{
+    using (Northwind db = new())
+    {
+        Product p = new()
+        {
+            CategoryId = categoryId,
+            ProductName = productName,
+            Cost = price
+        };
+        // mark product as added in change tracking
+        db.Products?.Add(p);
+        // save tracked change to database
+        int affected = db.SaveChanges();
+        return (affected == 1);
+    }
+}
+
+static void ListProducts()
+{
+    using (Northwind db = new())
+    {
+        WriteLine("{0,-3} {1,-35} {2,8} {3,5} {4}",
+          "Id", "Product Name", "Cost", "Stock", "Disc.");
+        foreach (Product p in db.Products
+          .OrderByDescending(product => product.Cost))
+        {
+            WriteLine("{0:000} {1,-35} {2,8:$#,##0.00} {3,5} {4}",
+              p.ProductId, p.ProductName, p.Cost, p.Stock, p.Discontinued);
+        }
+    }
+}
 
 static void QueryingProducts()
 {
