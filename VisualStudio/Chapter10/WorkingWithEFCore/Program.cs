@@ -4,11 +4,13 @@ using static System.Console;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 
-QueryingCategories();
+//QueryingCategories();
 //FilteredIncludes();
 //QueryingProducts();
+QueryingCategoriesWithExplicitLoad();
 
 static void QueryingProducts()
 {
@@ -62,6 +64,53 @@ static void FilteredIncludes()
             {
                 WriteLine($"  {p.ProductName} has {p.Stock} units in stock.");
             }
+        }
+    }
+}
+static void QueryingCategoriesWithExplicitLoad() {
+    using (Northwind db = new())
+    {
+        Console.WriteLine("Categories and how many products they have:");
+        IQueryable<Category>? categories;
+
+        db.ChangeTracker.LazyLoadingEnabled = false;
+        Write("Enable eager loading? (Y/N): ");
+        bool eagerloading = (ReadKey().Key == ConsoleKey.Y);
+        bool explicitloading = false;
+        WriteLine();
+        if (eagerloading)
+        {
+            categories = db.Categories?.Include(c => c.Products);
+        }
+        else
+        {
+            categories = db.Categories;
+            Write("Enable explicit loading? (Y/N): ");
+            explicitloading = (ReadKey().Key == ConsoleKey.Y);
+            WriteLine();
+        }
+
+        if (categories is null)
+        {
+            Console.WriteLine("No categories found.");
+            return;
+        }
+
+        foreach (Category c in categories)
+        {
+            if (explicitloading)
+            {
+                Write($"Explicitly load products for {c.CategoryName}? (Y/N): ");
+                ConsoleKeyInfo key = ReadKey();
+                WriteLine();
+                if (key.Key == ConsoleKey.Y)
+                {
+                    CollectionEntry<Category, Product> products =
+                      db.Entry(c).Collection(c2 => c2.Products);
+                    if (!products.IsLoaded) products.Load();
+                }
+            }
+            Console.WriteLine($"{c.CategoryName} has {c.Products.Count} products.");
         }
     }
 }
