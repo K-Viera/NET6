@@ -15,4 +15,8 @@
     <None Include="wwwroot\index.html" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Northwind.Common.DataContext.SqlServer\Northwind.Common.DataContext.SqlServer.csproj" />
+  </ItemGroup>
+
 </Project>
