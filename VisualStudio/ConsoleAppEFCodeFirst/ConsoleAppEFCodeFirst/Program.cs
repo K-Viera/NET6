@@ -2,9 +2,19 @@
 using ConsoleAppEFCodeFirst.Data;
 using ConsoleAppEFCodeFirst.Models;
 
-//addStudent("chris");
+addStudent("Kevin");
+addCurseToStudent("Spanish", "Kevin");
 listStudents();
-
+static void addCurseToStudent(string course,string name)
+{
+    using (SchoolContext db = new())
+    {
+        Student student = db.students.FirstOrDefault(x=>x.Name.Contains(name));
+        Course newCourse = new() { CourseName= course };
+        student.Courses.Add(newCourse);
+        db.SaveChanges();
+    };
+}
 static void addStudent(string name)
 {
     using (SchoolContext db = new())
