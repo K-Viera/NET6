@@ -23,8 +23,6 @@ Output(cohort2.Except(cohort3), "cohort2.Except(cohort3)");
 Output(cohort1.Zip(cohort2, (c1, c2) => $"{c1} matched with {c2}"),
   "cohort1.Zip(cohort2)");
 
-
-
 static void Output(IEnumerable<string> cohort,string description="")
 {
     if (!string.IsNullOrEmpty(description))
