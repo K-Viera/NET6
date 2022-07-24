@@ -25,7 +25,7 @@ static void GroupJoinWithQuerySyn() {
                          select new
                          {
                              c.CategoryName,
-                             Products=pGroup
+                             Products=pGroup.OrderBy(x=>x.ProductName)
                          };
         var prueba = queryGroup.AsEnumerable();
         foreach (var category in prueba)
