@@ -23,7 +23,7 @@ namespace LinqWithEFCore
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Data Source=(LocalDb)\\MSSQLLocalDB;Initial Catalog=Northwind;Integrated Security=true;");
+                optionsBuilder.UseSqlServer("Data Source=(LocalDb)\\MSSQLLocalDB;Initial Catalog=Northwind;Integrated Security=true;MultipleActiveResultSets=true");
             }
         }
 

@@ -3,7 +3,63 @@ using Microsoft.EntityFrameworkCore;
 using static System.Console;
 
 FilterAndSort();
+WriteLine("filter with LINQ query comprehension syntax");
+FilterAndSortWithQuerySyn();
 
+//WriteLine("join categories");
+//WriteLine();
+//JoinCategoriesAndProduct();
+//WriteLine("group join categories");
+//WriteLine();
+//GroupJoinCategoriesAndProducts();
+
+static void GroupJoinCategoriesAndProducts()
+{
+    using (Northwind db = new())
+    {
+        // group all products by their category to return 8 matches
+        var queryGroup = db.Categories.AsEnumerable().GroupJoin(
+          inner: db.Products,
+          outerKeySelector: category => category.CategoryId,
+          innerKeySelector: product => product.CategoryId,
+          resultSelector: (c, matchingProducts) => new
+          {
+              c.CategoryName,
+              Products = matchingProducts.OrderBy(p => p.ProductName)
+          });
+        foreach (var category in queryGroup)
+        {
+            WriteLine("{0} has {1} products.",
+              arg0: category.CategoryName,
+              arg1: category.Products.Count());
+            foreach (var product in category.Products)
+            {
+                WriteLine($" {product.ProductName}");
+            }
+        }
+    }
+}
+
+static void JoinCategoriesAndProduct()
+{
+    using (Northwind db = new())
+    {
+        // join evert product to its category to return 77 matches
+        var queryJoin = db.Categories.Join(
+            inner: db.Products,
+            outerKeySelector: category => category.CategoryId,
+            innerKeySelector: product => product.CategoryId,
+            resultSelector: (c, p) => new { c.CategoryName, p.ProductName, p.ProductId }
+            );
+        foreach (var item in queryJoin)
+        {
+            WriteLine("{0}: {1} is in {2}.",
+  arg0: item.ProductId,
+  arg1: item.ProductName,
+  arg2: item.CategoryName);
+        }
+    }
+}
 
 static void FilterAndSort()
 {
@@ -15,7 +71,7 @@ static void FilterAndSort()
         IOrderedQueryable<Product> sortedAndFilteredProducts =
           filteredProducts.OrderByDescending(product => product.UnitPrice);
         var projectedProducts = sortedAndFilteredProducts
-            .Select(product => new
+            .Select(product => new // anonymous type
             {
                 product.ProductId,
                 product.ProductName,
@@ -23,6 +79,27 @@ static void FilterAndSort()
             });
         WriteLine("Products that cost less than $10:");
         foreach (var p in projectedProducts)
+        {
+            WriteLine("{0}: {1} costs {2:$#,##0.00}",
+              p.ProductId, p.ProductName, p.UnitPrice);
+        }
+        WriteLine();
+    }
+}
+static void FilterAndSortWithQuerySyn()
+{
+    using (Northwind db = new())
+    {
+        DbSet<Product> allProducts = db.Products;
+
+        var filteredProducts =
+            from product in allProducts
+            where product.UnitPrice < 10M
+            orderby product.UnitPrice descending
+            select new { product.ProductId, product.ProductName, product.UnitPrice };
+
+        WriteLine("Products that cost less than $10:");
+        foreach (var p in filteredProducts)
         {
             WriteLine("{0}: {1} costs {2:$#,##0.00}",
               p.ProductId, p.ProductName, p.UnitPrice);
