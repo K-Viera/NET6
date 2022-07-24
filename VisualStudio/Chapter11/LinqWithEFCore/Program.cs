@@ -2,13 +2,15 @@
 using Microsoft.EntityFrameworkCore;
 using static System.Console;
 
-FilterAndSort();
-WriteLine("filter with LINQ query comprehension syntax");
-FilterAndSortWithQuerySyn();
+//FilterAndSort();
+//WriteLine("filter with LINQ query comprehension syntax");
+//FilterAndSortWithQuerySyn();
 
-//WriteLine("join categories");
-//WriteLine();
-//JoinCategoriesAndProduct();
+WriteLine("join categories");
+WriteLine();
+JoinCategoriesAndProduct();
+JoinWithQuerySyn();
+
 //WriteLine("group join categories");
 //WriteLine();
 //GroupJoinCategoriesAndProducts();
@@ -40,6 +42,21 @@ static void GroupJoinCategoriesAndProducts()
     }
 }
 
+static void JoinWithQuerySyn()
+{
+    using (Northwind db = new())
+    {
+        var join = from category in db.Categories
+                   join product in db.Products on category.CategoryId equals product.CategoryId
+                   select new { category.CategoryName, product.ProductName };
+        foreach (var product in join)
+        {
+            WriteLine($"{product.ProductName},{product.CategoryName}");
+        }
+        WriteLine(join.Count());
+    }
+}
+
 static void JoinCategoriesAndProduct()
 {
     using (Northwind db = new())
@@ -58,6 +75,7 @@ static void JoinCategoriesAndProduct()
   arg1: item.ProductName,
   arg2: item.CategoryName);
         }
+            WriteLine(queryJoin.Count());
     }
 }
 
