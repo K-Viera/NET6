@@ -6,14 +6,47 @@ using static System.Console;
 //WriteLine("filter with LINQ query comprehension syntax");
 //FilterAndSortWithQuerySyn();
 
-WriteLine("join categories");
-WriteLine();
-JoinCategoriesAndProduct();
-JoinWithQuerySyn();
-
-//WriteLine("group join categories");
+//WriteLine("join categories");
 //WriteLine();
-//GroupJoinCategoriesAndProducts();
+//JoinCategoriesAndProduct();
+//JoinWithQuerySyn();
+
+WriteLine("group join categories");
+WriteLine();
+GroupJoinCategoriesAndProducts();
+WriteLine();
+GroupJoinWithQuerySyn();
+
+static void GroupJoinWithQuerySyn() {
+    using (Northwind db = new())
+    {
+        var queryGroup = from c in db.Categories.AsEnumerable()
+                         join p in db.Products on c.CategoryId equals p.CategoryId into pGroup
+                         select new
+                         {
+                             c.CategoryName,
+                             Products=pGroup
+                         };
+        var prueba = queryGroup.AsEnumerable();
+        foreach (var category in prueba)
+        {
+            WriteLine("{0} has {1} products.",
+              arg0: category.CategoryName,
+              arg1: category.Products.Count());
+            foreach (var product in category.Products)
+            {
+                WriteLine($" {product.ProductName}");
+            }
+        }
+
+        //foreach (var category in queryGroup) { 
+        //    WriteLine($"Category: {category.CategoryName}");
+        //    foreach (var product in category.Products) {
+        //        WriteLine(product);
+        //    }
+        //}
+    }
+}
 
 static void GroupJoinCategoriesAndProducts()
 {
